@@ -36,9 +36,11 @@ public:
 
   ///* Process noise standard deviation longitudinal acceleration in m/s^2
   double std_a_;
+  double std_a2_;
 
   ///* Process noise standard deviation yaw acceleration in rad/s^2
   double std_yawdd_;
+  double std_yawdd2_;
 
   ///* Laser measurement noise standard deviation position1 in m
   double std_laspx_;
@@ -48,12 +50,15 @@ public:
 
   ///* Radar measurement noise standard deviation radius in m
   double std_radr_;
+  double std_radr2_;
 
   ///* Radar measurement noise standard deviation angle in rad
   double std_radphi_;
+  double std_radphi2_;
 
   ///* Radar measurement noise standard deviation radius change in m/s
   double std_radrd_ ;
+  double std_radrd2_;
 
   ///* Weights of sigma points
   VectorXd weights_;
@@ -67,6 +72,11 @@ public:
   ///* Sigma point spreading parameter
   double lambda_;
 
+  ///* Number of Sigma points
+  int n_sigma_;
+
+  ///* Q dimension
+  int n_q_;
 
   /**
    * Constructor

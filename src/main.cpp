@@ -77,16 +77,15 @@ int main()
           		iss >> timestamp;
           		meas_package.timestamp_ = timestamp;
           } else if (sensor_type.compare("R") == 0) {
-
       	  		meas_package.sensor_type_ = MeasurementPackage::RADAR;
           		meas_package.raw_measurements_ = VectorXd(3);
-          		float ro;
+          		float rho;
       	  		float theta;
-      	  		float ro_dot;
-          		iss >> ro;
+      	  		float rho_dot;
+          		iss >> rho;
           		iss >> theta;
-          		iss >> ro_dot;
-          		meas_package.raw_measurements_ << ro,theta, ro_dot;
+          		iss >> rho_dot;
+          		meas_package.raw_measurements_ << rho,theta, rho_dot;
           		iss >> timestamp;
           		meas_package.timestamp_ = timestamp;
           }
