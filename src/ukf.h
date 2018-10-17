@@ -11,7 +11,7 @@ using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
 class UKF {
-public:
+private:
 
   ///* initially set to false, set to true in first call of ProcessMeasurement
   bool is_initialized_;
@@ -22,9 +22,11 @@ public:
   ///* if this is false, radar measurements will be ignored (except for init)
   bool use_radar_;
 
+public:
   ///* state vector: [pos1 pos2 vel_abs yaw_angle yaw_rate] in SI units and rad
   VectorXd x_;
 
+private:
   ///* state covariance matrix
   MatrixXd P_;
 
@@ -57,7 +59,7 @@ public:
   double std_radphi2_;
 
   ///* Radar measurement noise standard deviation radius change in m/s
-  double std_radrd_ ;
+  double std_radrd_;
   double std_radrd2_;
 
   ///* Weights of sigma points
@@ -78,6 +80,7 @@ public:
   ///* Q dimension
   int n_q_;
 
+public:
   /**
    * Constructor
    */
@@ -94,6 +97,7 @@ public:
    */
   void ProcessMeasurement(MeasurementPackage meas_package);
 
+private:
   /**
    * Prediction Predicts sigma points, the state, and the state covariance
    * matrix
@@ -112,6 +116,12 @@ public:
    * @param meas_package The measurement at k+1
    */
   void UpdateRadar(MeasurementPackage meas_package);
+
+  void GenerateAugmentedSigmaPoints(MatrixXd& Xsig_aug) const;
+  void PredictionOnSigmaPoints(const MatrixXd& Xsig_aug, double dt);
+  void CalcurateMeanAndCovariance();
+
+  void PredictRadarMeasurement(int n_z, MatrixXd& S, MatrixXd& Zsig, VectorXd& z_pred);
 };
 
 #endif /* UKF_H */
