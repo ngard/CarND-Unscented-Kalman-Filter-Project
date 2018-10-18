@@ -46,9 +46,11 @@ private:
 
   ///* Laser measurement noise standard deviation position1 in m
   double std_laspx_;
+  double std_laspx2_;
 
   ///* Laser measurement noise standard deviation position2 in m
   double std_laspy_;
+  double std_laspy2_;
 
   ///* Radar measurement noise standard deviation radius in m
   double std_radr_;
@@ -121,6 +123,7 @@ private:
   void PredictionOnSigmaPoints(const MatrixXd& Xsig_aug, double dt);
   void CalcurateMeanAndCovariance();
 
+  void PredictLidarMeasurement(int n_z, MatrixXd& S, MatrixXd& Zsig, VectorXd& z_pred);
   void PredictRadarMeasurement(int n_z, MatrixXd& S, MatrixXd& Zsig, VectorXd& z_pred);
 };
 

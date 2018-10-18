@@ -57,7 +57,7 @@ int main()
           
           string sensor_measurement = j[1]["sensor_measurement"];
 
-	  //cerr << sensor_measurement << endl;
+	  cerr << sensor_measurement << endl;
 
           MeasurementPackage meas_package;
           istringstream iss(sensor_measurement);
